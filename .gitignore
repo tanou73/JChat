@@ -1,6 +1,27 @@
-*.class
+# NetBeans
+nbproject/private
+build
+nbbuild
+dist
+nbdist
+nbactions.xml
+nb-configuration.xml
 
-# Package Files #
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+.*
+!.gitignore
+!.gitkeep
+*~
+
+# java, maven, scala
+bin
+target
+*.class
+.scala_dependencies
 *.jar
-*.war
-*.ear
