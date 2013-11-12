@@ -1,0 +1,26 @@
+/* form which contains search bar*/
+#submitSearch{
+    padding-top: 35px;
+    height: 50px;
+}
+/* div which contains search form*/
+#divSearchBar{
+    height: 110px;
+    background-color: #333333;
+}
+
+/* div to display all of result*/
+#divResult{
+    padding-top: 20px;
+}
+
+body{
+    background-color: #dddddd;
+    margin-top: 50px;
+}
+
+/* to remove just to display JSON returned by webservice*/
+#exempleReturn{
+    padding-left: 0px;
+    padding-right: 0px;
+}
