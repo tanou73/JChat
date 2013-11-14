@@ -5,7 +5,8 @@
 package ejb;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,15 +20,13 @@ import javax.persistence.OneToMany;
  */
 @Entity
 public class Chat implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    
     private String name;
-    
-    @OneToMany(cascade = CascadeType.ALL)
-    private Set<Message> messages;
-    
+    @OneToMany(mappedBy = "chat", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Message> messages;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
 
     public Long getId() {
@@ -60,7 +59,7 @@ public class Chat implements Serializable {
 
     @Override
     public String toString() {
-        return "ejb.Chat[ id=" + id + " ]";
+        return "ejb.Chat[ id=" + id + " name = " + name +  "]";
     }
 
     public String getName() {
@@ -71,11 +70,21 @@ public class Chat implements Serializable {
         this.name = name;
     }
 
-    public Set<Message> getMessages() {
+    public List<Message> getMessages() {
         return messages;
     }
 
-    public void setMessages(Set<Message> messages) {
+    public void addMessage(Message message) {
+        if (messages == null) {
+            messages = new ArrayList<>();
+        }
+        if (message != null) {
+            message.setChat(this);
+            messages.add(message);
+        }
+    }
+
+    public void setMessages(List<Message> messages) {
         this.messages = messages;
     }
 }

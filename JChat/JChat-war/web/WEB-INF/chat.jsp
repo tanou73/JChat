@@ -13,50 +13,52 @@
                     </div>
 
                     <div class="panel-body">
-                        <h2> Vous êtes connecté sous le pseudo: Joe </h2>                        
-                        <hr>
+                        <h4> Vous êtes connecté en tant que: Joe </h4>                        
+                        <hr/>
 
+                        <div class="messages">
+                            <table  class="table table-striped table-hover table-condensed">
+                                <tbody>
+                                    <tr>
+                                        <td> 10:32:45 </td>
+                                        <td> Albert </td>
+                                        <td> : </td>
+                                        <td> Contrairement à une opinion répandue, le Lorem Ipsum n'est pas simplement du texte aléatoire. Il trouve ses racines dans une oeuvre de la littérature latine classiqu </td>
+                                    </tr>
+                                    <tr>
+                                        <td> 10:32:45 </td>
+                                        <td> Albert </td>
+                                        <td> : </td>
+                                        <td> Le Lorem Ipsum ainsi obtenu ne contient aucune répétition, ni ne contient des mots farfelus, ou des touches d'humour. </td>
+                                    </tr>
+                                    <tr>
+                                        <td> 10:32:45 </td>
+                                        <td> Albert </td>
+                                        <td> : </td>
+                                        <td> Si vous voulez utiliser un passage du Lorem Ipsum, vous devez être sûr qu'il n'y a rien d'embarrassant caché dans le texte. Tous les générateurs de Lorem Ipsum sur Internet tendent à reproduire le même extrait sans fin. </td>
+                                    </tr>
+                                    <tr>
+                                        <td> 10:32:45 </td>
+                                        <td> Albert </td>
+                                        <td> : </td>
+                                        <td> On sait depuis longtemps que travailler avec du texte lisible et contenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même. </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <hr/>
                         <div>
-                            <form class="form" method="POST" role="form">
+                            <form class="form" method="POST" role="form" onsubmit="return false;">
                                 <div class="form-group ">
                                     <label class="sr-only" for="chatName">Message</label>
-                                    <textarea class="form-control" rows="4" id="content" name="content" placeholder="Votre message..."> </textarea>
+                                    <textarea class="form-control" rows="4" id="content" name="content" placeholder="Votre message..."></textarea>
                                 </div>
                                 <button type="submit" name class="btn btn-info ">Envoyer</button>
                             </form>
-                        </div>       
-                        <hr>
-                        
-                        <table class="table table-striped table-hover table-condensed">
-                            <tr>
-                                <td> 10:32:45 </td>
-                                <td> Albert </td>
-                                <td> : </td>
-                                <td> Contrairement à une opinion répandue, le Lorem Ipsum n'est pas simplement du texte aléatoire. Il trouve ses racines dans une oeuvre de la littérature latine classiqu </td>
-                            </tr>
-                            <tr>
-                                <td> 10:32:45 </td>
-                                <td> Albert </td>
-                                <td> : </td>
-                                <td> Le Lorem Ipsum ainsi obtenu ne contient aucune répétition, ni ne contient des mots farfelus, ou des touches d'humour. </td>
-                            </tr>
-                            <tr>
-                                <td> 10:32:45 </td>
-                                <td> Albert </td>
-                                <td> : </td>
-                                <td> Si vous voulez utiliser un passage du Lorem Ipsum, vous devez être sûr qu'il n'y a rien d'embarrassant caché dans le texte. Tous les générateurs de Lorem Ipsum sur Internet tendent à reproduire le même extrait sans fin. </td>
-                            </tr>
-                            <tr>
-                                <td> 10:32:45 </td>
-                                <td> Albert </td>
-                                <td> : </td>
-                                <td> On sait depuis longtemps que travailler avec du texte lisible et contenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même. </td>
-                            </tr>
-                        </table>
+                        </div>   
                     </div>
-
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
 </t:layout>

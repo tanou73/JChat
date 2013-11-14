@@ -5,11 +5,11 @@
 package ejb;
 
 import java.io.Serializable;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -17,14 +17,15 @@ import javax.persistence.Id;
  */
 @Entity
 public class Message implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    
     private String author;
     private long timestamp;
-    private String content;   
-    
+    private String content;
+    @ManyToOne
+    private Chat chat;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
 
     public Long getId() {
@@ -33,6 +34,14 @@ public class Message implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Chat getChat() {
+        return chat;
+    }
+
+    public void setChat(Chat chat) {
+        this.chat = chat;
     }
 
     @Override
@@ -57,7 +66,7 @@ public class Message implements Serializable {
 
     @Override
     public String toString() {
-        return "ejb.Message[ id=" + id + " ]";
+        return "ejb.Message[ id=" + id + " author= "+author+ " content= " +content  + " ]";
     }
 
     public String getAuthor() {
