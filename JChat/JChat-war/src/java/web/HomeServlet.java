@@ -4,8 +4,11 @@
  */
 package web;
 
+import ejb.Chat;
+import ejb.ChatFacadeLocal;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,15 +22,10 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "HomeServlet", urlPatterns = {"/home"})
 public class HomeServlet extends HttpServlet {
 
-    /**
-     * Handles the HTTP
-     * <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+
+    @EJB
+    ChatFacadeLocal chatFacadeLocal;
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -35,19 +33,12 @@ public class HomeServlet extends HttpServlet {
         if (request.getSession().getAttribute("login") == null) {
             response.sendRedirect(response.encodeRedirectURL("login"));
         } else {
+            List<Chat> chats = chatFacadeLocal.findAll();
+            request.setAttribute("chats", chats);
             this.getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
         }
     }
 
-    /**
-     * Handles the HTTP
-     * <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -62,13 +53,4 @@ public class HomeServlet extends HttpServlet {
         this.getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 }

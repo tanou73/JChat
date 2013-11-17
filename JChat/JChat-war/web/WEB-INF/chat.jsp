@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
@@ -9,16 +8,24 @@
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">JChat - chatchat</h3>
+                        <h3 class="panel-title">JChat - ${chat.name}</h3>
                     </div>
 
                     <div class="panel-body">
-                        <h4> Vous êtes connecté en tant que: Joe </h4>                        
+                        <h4> Vous êtes connecté en tant que: ${username} </h4>                        
                         <hr/>
 
                         <div class="messages">
                             <table  class="table table-striped table-hover table-condensed">
                                 <tbody>
+                                    <c:forEach var="message" items="${chat.messages}" >
+                                        <tr>
+                                            <td>${message.timestamp}</td>
+                                            <td>${message.author}</td> 
+                                            <td> : </td>
+                                            <td>${message.content}</td> 
+                                        </tr>	
+                                    </c:forEach>
                                     <tr>
                                         <td> 10:32:45 </td>
                                         <td> Albert </td>

@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
@@ -20,13 +20,23 @@
                                 <th class="text-center"> Nombre de messages </th>
                                 <th>  </th>
                             </tr>
-
-                            <tr>
-                                <td> 1 </td>
-                                <td> Sortie ski </td>
-                                <td class="text-center"> 6 </td>
-                                <td class="text-center"> <a href="chat?id=1&action=enter" class="btn btn-success" role="button" > Se connecter </a> <a href="chat?id=1&action=delete" class="btn btn-danger" role="button"> &times; </a> </td>
-                            </tr>
+                            <!--
+                                                      <tr>
+                                                          <td> 1 </td>
+                                                          <td> Sortie ski </td>
+                                                          <td class="text-center"> 6 </td>
+                                                          <td class="text-center"> <a href="chat?id=1&action=enter" class="btn btn-success" role="button" > Se connecter </a> <a href="chat?id=1&action=delete" class="btn btn-danger" role="button"> &times; </a> </td>
+                                                      </tr>
+                            
+                            -->
+                            <c:forEach var="chat" items="${chats}" >
+                                <tr>
+                                    <td>${chat.id}</td>
+                                    <td>${chat.name}</td> 
+                                    <td>${fn:length(chat.messages)}</td> 
+                                    <td class="text-center"> <a href="chat?id=${chat.id}&action=enter" class="btn btn-success" role="button" > Se connecter </a> <a href="chat?id=${chat.id}&action=delete" class="btn btn-danger" role="button"> &times; </a> </td>
+                                </tr>	
+                            </c:forEach>
                         </table>
 
                         <hr>
