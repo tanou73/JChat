@@ -28,6 +28,16 @@ public class Message implements Serializable {
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
 
+    public Message() {
+    }
+
+    public Message(String author, long timestamp, String content, Chat chat) {
+        this.author = author;
+        this.timestamp = timestamp;
+        this.content = content;
+        this.chat = chat;
+    }
+
     public Long getId() {
         return id;
     }

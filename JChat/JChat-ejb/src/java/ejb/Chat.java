@@ -21,8 +21,14 @@ import javax.persistence.OneToMany;
 @Entity
 public class Chat implements Serializable {
 
+    public enum State {
+
+        OPEN, CLOSED
+    };
     private static final long serialVersionUID = 1L;
     private String name;
+    private String owner;
+    private State state;
     @OneToMany(mappedBy = "chat", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Message> messages;
     @Id
@@ -59,7 +65,7 @@ public class Chat implements Serializable {
 
     @Override
     public String toString() {
-        return "ejb.Chat[ id=" + id + " name = " + name +  "]";
+        return "ejb.Chat[ id=" + id + " name = " + name + "]";
     }
 
     public String getName() {
@@ -74,6 +80,16 @@ public class Chat implements Serializable {
         return messages;
     }
 
+    public List<Message> getMessages(long lastId) {
+        List<Message> lastMessages = new ArrayList<>();
+        for (Message message : messages) {
+            if (message.getId() > lastId) {
+                lastMessages.add(message);
+            }
+        }
+        return lastMessages;
+    }
+
     public void addMessage(Message message) {
         if (messages == null) {
             messages = new ArrayList<>();
@@ -86,5 +102,31 @@ public class Chat implements Serializable {
 
     public void setMessages(List<Message> messages) {
         this.messages = messages;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
+    }
+
+    public Chat(String name, String user) {
+        this();
+        this.name = name;
+        this.owner = user;
+    }
+
+    public Chat() {
+        this.state = State.OPEN;
     }
 }

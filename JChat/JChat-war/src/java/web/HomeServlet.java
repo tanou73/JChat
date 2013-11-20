@@ -22,10 +22,9 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "HomeServlet", urlPatterns = {"/home"})
 public class HomeServlet extends HttpServlet {
 
-
     @EJB
     ChatFacadeLocal chatFacadeLocal;
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -43,14 +42,16 @@ public class HomeServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setAttribute("isPost", true);
-        
+
         if (request.getParameter("chatName") != null && request.getParameter("chatName").length() >= 3) {
             request.setAttribute("success", true);
-            // créer un chat
+            Chat chat = new Chat(request.getParameter("chatName"), String.valueOf(request.getSession().getAttribute("login")));
+            chatFacadeLocal.create(chat);
         } else {
             request.setAttribute("success", false);
         }
+        List<Chat> chats = chatFacadeLocal.findAll();
+        request.setAttribute("chats", chats);
         this.getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
     }
-
 }

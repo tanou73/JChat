@@ -6,7 +6,10 @@ package web;
 
 import ejb.Chat;
 import ejb.ChatFacadeLocal;
+import ejb.Message;
 import java.io.IOException;
+import java.util.Date;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -39,8 +42,14 @@ public class ChatServlet extends HttpServlet {
                     request.setAttribute("username", request.getSession().getAttribute("login"));
                     this.getServletContext().getRequestDispatcher("/WEB-INF/chat.jsp").forward(request, response);
                     break;
-                case "delete":
-
+                case "refresh":
+                    List<Message> lastMessages = chat.getMessages(Long.valueOf(request.getParameter("lastMessageID")));
+                    if (lastMessages.size() > 0) {
+                        long lastId = lastMessages.get(lastMessages.size() - 1).getId();
+                        request.setAttribute("messages", lastMessages);
+                        request.setAttribute("lastId", lastId);
+                        this.getServletContext().getRequestDispatcher("/WEB-INF/lastMessages.jsp").forward(request, response);
+                    }
                     break;
             }
         }
@@ -49,5 +58,11 @@ public class ChatServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        long id = Long.valueOf(request.getParameter("chatId"));
+        Chat chat = chatFacadeLocal.find(id);
+        String content = request.getParameter("messageContent");
+        String author = String.valueOf(request.getSession().getAttribute("login"));
+        chat.addMessage(new Message(author, new Date().getTime() / 1000l, content, chat));
+        chatFacadeLocal.edit(chat);
     }
 }
