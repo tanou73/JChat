@@ -7,6 +7,7 @@
 <html>
     <head>
         <!-- Bootstrap -->
+        <meta charset="utf-8">
         <link href="bootstrap/css/bootstrap-theme.css" rel="stylesheet" media="screen">
         <link href="bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
         <link href="css/app.css" rel="stylesheet" media="screen">

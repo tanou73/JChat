@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 <t:layout title="Login">
@@ -21,14 +21,16 @@
                             <tr>
                                 <th> # </th>
                                 <th> Nom </th>
-                                <th class="text-center"> Nombre de messages </th>
-                                <th>  </th>
+                                <th> Nombre de messages </th>
+                                <th>Créé par</th>
+                                <th>&nbsp;</th>
                             </tr>
                             <c:forEach var="chat" items="${chats}" >
                                 <tr>
                                     <td>${chat.id}</td>
                                     <td>${chat.name}</td> 
                                     <td>${fn:length(chat.messages)}</td> 
+                                    <td>${chat.owner}</td> 
                                     <td class="text-center"> 
                                         <a href="chat?id=${chat.id}&action=enter" class="btn ${chat.state eq 'CLOSED' ? "disabled" : ""} btn-mg btn-success glyphicon glyphicon-log-in" role="button" > </a> 
                                         <c:if test="${chat.state eq 'OPEN'}">
