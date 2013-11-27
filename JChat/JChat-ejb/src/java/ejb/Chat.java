@@ -22,7 +22,6 @@ import javax.persistence.OneToMany;
 public class Chat implements Serializable {
 
     public enum State {
-
         OPEN, CLOSED
     };
     private static final long serialVersionUID = 1L;
