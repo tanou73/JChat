@@ -21,6 +21,7 @@
                     type: 'POST',
                     success: function() {
                         contentField.val("");
+                        refreshFunction();
                     },
                     error: function() {
                     }
@@ -42,15 +43,22 @@
                     type: 'GET',
                     success: function(data) {
                         $('#messages-list').append(data);
-                        
+                        if (data !== "")
+                            $('.messages').scrollTop($('.messages')[0].scrollHeight);
                     },
                     error: function() {
                     }
                 });
-            }
+            };
 
             $(function() {
                 setInterval(refreshFunction, 1000);
+
+                $('#content-field').keydown(function(e) {
+                    if (e.keyCode === 13) {
+                        $('#message-form').submit();
+                    }
+                });
             });
         </script>
     </jsp:attribute>
@@ -60,7 +68,12 @@
                 <div class="col-md-10 col-md-offset-1">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">JChat - ${chat.name}</h3>
+                            <h3 class="panel-title">
+                                JChat - ${chat.name}
+                               <a href="home" type="button" class="pull-right btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-circle-arrow-left"></span>Retour
+                                </a>
+                            </h3>
                         </div>
 
                         <div class="panel-body">
@@ -68,11 +81,14 @@
                             <hr/>
 
                             <div class="messages">
-                                <table  class="table table-striped table-hover table-condensed">
-                                    <tbody id="messages-list">
-                                       
-                                    </tbody>
-                                </table>
+                                <!--  <table  class="table table-striped table-hover table-condensed">
+                                      <tbody id="messages-list">
+  
+                                      </tbody>
+                                  </table> -->
+                                <div id="messages-list">
+
+                                </div>
                             </div>
                             <hr/>
                             <div>

@@ -5,6 +5,9 @@
 package ejb;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,6 +22,7 @@ import javax.persistence.ManyToOne;
 public class Message implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    public static DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
     private String author;
     private long timestamp;
     private String content;
@@ -76,7 +80,7 @@ public class Message implements Serializable {
 
     @Override
     public String toString() {
-        return "ejb.Message[ id=" + id + " author= "+author+ " content= " +content  + " ]";
+        return "ejb.Message[ id=" + id + " author= " + author + " content= " + content + " ]";
     }
 
     public String getAuthor() {
@@ -101,5 +105,10 @@ public class Message implements Serializable {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getTimestampToString() {
+        Date date = new Date(timestamp);
+        return dateFormat.format(date);
     }
 }
