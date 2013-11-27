@@ -7,8 +7,8 @@
 <html>
     <head>
         <!-- Bootstrap -->
-        <link href="bootstrap/bootstrap-theme.css" rel="stylesheet" media="screen">
-        <link href="bootstrap/bootstrap.css" rel="stylesheet" media="screen">
+        <link href="bootstrap/css/bootstrap-theme.css" rel="stylesheet" media="screen">
+        <link href="bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
         <link href="css/app.css" rel="stylesheet" media="screen">
         <title>${title == null ? "JChat" : title} 
         </title>
@@ -27,7 +27,7 @@
                     <p class="muted credit text-center"> Hugo Chiavenuto - Maxime Layat for <a href="http://www.univ-savoie.fr">Univ-savoie</a></p>
                 </div>
                 <script src="jquery_1.10.2.js"></script>
-                <script src="bootstrap/bootstrap.js"></script>
+                <script src="bootstrap/js/bootstrap.js"></script>
                   <jsp:invoke fragment="js"/> 
             </div>
         </div>

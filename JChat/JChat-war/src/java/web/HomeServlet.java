@@ -32,8 +32,35 @@ public class HomeServlet extends HttpServlet {
         if (request.getSession().getAttribute("login") == null) {
             response.sendRedirect(response.encodeRedirectURL("login"));
         } else {
+            if (request.getParameter("action") != null) {
+                long id = Long.valueOf(request.getParameter("id"));
+                Chat chat = chatFacadeLocal.find(id);
+
+                switch (request.getParameter("action")) {
+                    case "lock":
+                        if (request.getSession().getAttribute("login").equals(chat.getOwner())) {
+                            chat.setState(Chat.State.CLOSED);
+                            chatFacadeLocal.edit(chat);
+                        }
+                        break;
+                    case "unlock":
+                        if (request.getSession().getAttribute("login").equals(chat.getOwner())) {
+                            chat.setState(Chat.State.OPEN);
+                            chatFacadeLocal.edit(chat);
+                        }
+                        break;
+                    case "delete":
+                        if (request.getSession().getAttribute("login").equals(chat.getOwner())) {
+                            chatFacadeLocal.remove(chat);
+                        }
+                        break;
+                }
+            }
+
             List<Chat> chats = chatFacadeLocal.findAll();
             request.setAttribute("chats", chats);
+            request.setAttribute("states", Chat.State.values());
+            request.setAttribute("user", request.getSession().getAttribute("login"));
             this.getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
         }
     }
@@ -52,6 +79,8 @@ public class HomeServlet extends HttpServlet {
         }
         List<Chat> chats = chatFacadeLocal.findAll();
         request.setAttribute("chats", chats);
+        request.setAttribute("states", Chat.State.values());
+        request.setAttribute("user", request.getSession().getAttribute("login"));
         this.getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
     }
 }

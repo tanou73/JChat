@@ -20,21 +20,22 @@
                                 <th class="text-center"> Nombre de messages </th>
                                 <th>  </th>
                             </tr>
-                            <!--
-                                                      <tr>
-                                                          <td> 1 </td>
-                                                          <td> Sortie ski </td>
-                                                          <td class="text-center"> 6 </td>
-                                                          <td class="text-center"> <a href="chat?id=1&action=enter" class="btn btn-success" role="button" > Se connecter </a> <a href="chat?id=1&action=delete" class="btn btn-danger" role="button"> &times; </a> </td>
-                                                      </tr>
-                            
-                            -->
+
                             <c:forEach var="chat" items="${chats}" >
                                 <tr>
                                     <td>${chat.id}</td>
                                     <td>${chat.name}</td> 
                                     <td>${fn:length(chat.messages)}</td> 
-                                    <td class="text-center"> <a href="chat?id=${chat.id}&action=enter" class="btn btn-success" role="button" > Se connecter </a> <a href="chat?id=${chat.id}&action=delete" class="btn btn-danger" role="button"> &times; </a> </td>
+                                    <td class="text-center"> 
+                                        <a href="chat?id=${chat.id}&action=enter" class="btn ${chat.state eq 'CLOSED' ? "disabled" : ""} btn-mg btn-success glyphicon glyphicon-log-in" role="button" > </a> 
+                                        <c:if test="${chat.state eq 'OPEN'}">
+                                            <a href="home?id=${chat.id}&action=lock" class="btn ${user eq chat.owner ? "" : "disabled"} btn-mg btn-warning glyphicon glyphicon-ban-circle" role="button"> </a> 
+                                        </c:if>
+                                        <c:if test="${chat.state eq 'CLOSED'}">
+                                            <a href="home?id=${chat.id}&action=unlock" class="btn btn-mg btn-primary glyphicon glyphicon-ok-sign" role="button"> </a> 
+                                        </c:if>
+                                        <a href="home?id=${chat.id}&action=delete" class="btn ${user eq chat.owner ? "" : "disabled"} btn-mg btn-danger glyphicon glyphicon-remove-circle" role="button"> </a>                                             
+                                    </td>
                                 </tr>	
                             </c:forEach>
                         </table>
