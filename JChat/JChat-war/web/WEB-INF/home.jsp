@@ -9,11 +9,10 @@
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">
-                            JChat - Chat'Manager
-                            <a href="logout" type="button" class="pull-right btn btn-default btn-sm">
-                                <span class="glyphicon glyphicon-circle-arrow-left"></span>Se déconnecter
-                            </a>
+                        <h3 class="panel-title row">
+                            <span class="col-md-2 margin-box-10 glyphicon glyphicon-bullhorn" > <strong> JChat </strong> </span> 
+                            <span class="col-md-6 margin-box-10 text-center" > Bienvenue sur le Chat Manager </span>
+                            <a href="logout" type="button" class="margin-box-10 pull-right btn btn-default btn glyphicon glyphicon-log-out"> ${user} </a>
                         </h3>
                     </div>
 
@@ -36,7 +35,7 @@
                                             <a href="home?id=${chat.id}&action=lock" class="btn ${user eq chat.owner ? "" : "disabled"} btn-mg btn-warning glyphicon glyphicon-ban-circle" role="button"> </a> 
                                         </c:if>
                                         <c:if test="${chat.state eq 'CLOSED'}">
-                                            <a href="home?id=${chat.id}&action=unlock" class="btn btn-mg btn-primary glyphicon glyphicon-ok-sign" role="button"> </a> 
+                                            <a href="home?id=${chat.id}&action=unlock" class="btn btn btn-primary glyphicon glyphicon-ok-sign" role="button"> </a> 
                                         </c:if>
                                         <a href="home?id=${chat.id}&action=delete" class="btn ${user eq chat.owner ? "" : "disabled"} btn-mg btn-danger glyphicon glyphicon-remove-circle" role="button"> </a>                                             
                                     </td>

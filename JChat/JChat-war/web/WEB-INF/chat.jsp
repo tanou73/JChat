@@ -68,11 +68,10 @@
                 <div class="col-md-10 col-md-offset-1">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">
-                                JChat - ${chat.name}
-                               <a href="home" type="button" class="pull-right btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-circle-arrow-left"></span>Retour
-                                </a>
+                            <h3 class="panel-title row">
+                                <span class="col-md-2 margin-box-10 glyphicon glyphicon-bullhorn" > <strong> JChat </strong> </span> 
+                                <span class="col-md-6 margin-box-10 text-center" > ${chat.name} </span>
+                                <a href="home" type="button" class="margin-box-10 pull-right btn btn-default btn glyphicon glyphicon-circle-arrow-left"> Retour </a>
                             </h3>
                         </div>
 
