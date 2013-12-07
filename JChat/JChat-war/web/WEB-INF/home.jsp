@@ -3,7 +3,7 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-<t:layout title="Login">
+<t:layout title="Accueil">
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
@@ -37,7 +37,7 @@
                                             <a title="Fermer"  href="home?id=${chat.id}&action=lock" class="btn ${user eq chat.owner ? "" : "disabled"} btn-mg btn-warning glyphicon glyphicon-ban-circle" role="button"> </a> 
                                         </c:if>
                                         <c:if test="${chat.state eq 'CLOSED'}">
-                                            <a title="Ouvrir"  href="home?id=${chat.id}&action=unlock" class="btn btn btn-primary glyphicon glyphicon-ok-sign" role="button"> </a> 
+                                            <a title="Ouvrir"  href="home?id=${chat.id}&action=unlock" class="btn ${user eq chat.owner ? "" : "disabled"} btn btn-primary glyphicon glyphicon-ok-sign" role="button"> </a> 
                                         </c:if>
                                         <a title="Supprimer"  href="home?id=${chat.id}&action=delete" class="btn ${user eq chat.owner ? "" : "disabled"} btn-mg btn-danger glyphicon glyphicon-remove-circle" role="button"> </a>                                             
                                     </td>

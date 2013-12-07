@@ -4,7 +4,7 @@
 
 
 
-<t:layout title="Login">
+<t:layout title="Chat">
     <jsp:attribute name="js">
         <script type="text/javascript">
 
